@@ -1,0 +1,149 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Натяжные потолки — Премиум качество</title>
+    <link rel="stylesheet" href="{% static 'landing/style.css' %}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Потолки-Мастер</div>
+            <ul class="nav-links">
+                <li><a href="#calc">Калькулятор</a></li>
+                <li><a href="#works">Наши работы</a></li>
+                <li><a href="#order">Заказать</a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+    <header class="hero">
+    <div class="container hero-vertical">
+        <div class="hero-text">
+            <h1>Натяжные потолки в Казани</h1>
+            <p>Предлагаем натяжные потолки в Казани. Мы акцентируем внимание на чистом монтаже, личном контроле, фиксированной цене и надежном сервисе для клиентов</p>
+        </div>
+        <div class="hero-image">
+            <img src="{% static 'landing/кремль.png' %}" alt="Пример натяжного потолка">
+        </div>
+        <div class="hero-action">
+            <a href="#calc" class="btn-primary">Рассчитать стоимость</a>
+        </div>
+    </div>
+</header>
+
+<!-- Блок преимуществ: Вертикальный список -->
+<section id="features" class="container">
+    <h2>Почему нас выбирают</h2>
+    <p class="section-description">
+        Честный подход, аккуратность в работе, гарантия качества, фиксированная цена и личный контроль на каждом этапе - вот почему клиенты выбирают нас.
+    </p>
+    <div class="features-grid">
+        <div class="feature-item">
+            <div class="feature-icon">
+                <img src="{% static 'landing/gifka.gif' %}" alt="Иконка">
+            </div>
+            <div class="feature-content">
+                <h3>Честный подход</h3>
+                <p>Мы всегда прозрачны в наших ценах и условиях работы.</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">
+                <img src="{% static 'landing/gifka.gif' %}" alt="Иконка">
+            </div>
+            <div class="feature-content">
+                <h3>Аккуратность</h3>
+                <p>Наш монтаж выполняется с высокой точностью и вниманием к деталям.</p>
+            </div>
+        </div>
+        <div class="feature-item">
+            <div class="feature-icon">
+                <img src="{% static 'landing/gifka.gif' %}" alt="Иконка">
+            </div>
+            <div class="feature-content">
+                <h3>Гарантия</h3>
+                <p>Мы предоставляем гарантию на все выполненные работы.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+    <section id="calc" class="container">
+        <div class="calculator">
+            <h2>Калькулятор стоимости</h2>
+            <div class="calc-grid">
+                <div class="input-group">
+                    <label>Площадь (м²):</label>
+                    <input type="number" id="area" value="20" min="1">
+                </div>
+                <div class="input-group">
+                    <label>Материал:</label>
+                    <select id="material">
+                        <option value="500">Матовый (500₽/м²)</option>
+                        <option value="600">Глянцевый (600₽/м²)</option>
+                        <option value="900">Тканевый (900₽/м²)</option>
+                    </select>
+                </div>
+                <div class="input-group">
+                    <label>Светильники (шт):</label>
+                    <input type="number" id="lights" value="0" min="0">
+                </div>
+                <div class="result">
+                    <h3>Итого: <span id="total-price">10000</span> ₽</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="works" class="container">
+    <h2>Примеры наших работ</h2>
+    <div class="portfolio-wrapper">
+        <div class="portfolio-scroll-container">
+            <img src="{% static 'landing/1.jpg' %}" class="gallery-img" alt="Работа 1">
+            <img src="{% static 'landing/2.jpg' %}" class="gallery-img" alt="Работа 2">
+            <img src="{% static 'landing/3.jpg' %}" class="gallery-img" alt="Работа 3">
+            <img src="{% static 'landing/4.jpeg' %}" class="gallery-img" alt="Работа 4">
+            <img src="{% static 'landing/5.jpeg' %}" class="gallery-img" alt="Работа 5">
+            <img src="{% static 'landing/6.jpg' %}" class="gallery-img" alt="Работа 6">
+        </div>
+    </div>
+</section>
+    {% if success %}
+    <div style="background: #e8f5e9; color: #2e7d32; padding: 15px; border-radius: 12px; margin-bottom: 20px; text-align: center;">
+        ✅ Спасибо! Ваша заявка принята, мы скоро свяжемся с вами.
+    </div>
+    {% endif %}
+    <section id="order" class="container">
+        <div class="order-form">
+            <h2>Оставить заявку</h2>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="form-grid">
+                    <input type="text" name="name" placeholder="Ваше имя" required>
+                    <input type="tel" name="phone" placeholder="Ваш телефон" required>
+                    <button type="submit">Отправить данные</button>
+                </div>
+            </form>
+        </div>
+    </section>
+
+    <div id="lightbox" class="lightbox">
+    <span class="close-lightbox">&times;</span>
+    
+    <!-- Кнопки навигации -->
+    <button class="prev-btn" id="prev-btn">&#10094;</button>
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Увеличенное фото">
+    </div>
+    <button class="next-btn" id="next-btn">&#10095;</button>
+</div>
+
+    <script src="{% static 'landing/script.js' %}"></script>
+</body>
+</html>
